@@ -1,1 +1,1 @@
-Ravea Bander Julieta S33
+RAVEA BANDER JULIETA S33
