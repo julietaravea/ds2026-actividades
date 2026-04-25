@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Catálogo</title>
+</head>
+<body>
+
+    <h1>Catálogo</h1>
+
+    <h2>Agregar libro</h2>
+
+    <input type="text" id="titulo" placeholder="Título">
+    <input type="text" id="autor" placeholder="Autor">
+    <input type="number" id="precio" placeholder="Precio">
+    <input type="text" id="genero" placeholder="Género (opcional)">
+
+    <input type="checkbox" id="disponible">
+    <label for="disponible">Disponible</label>
+
+    <br><br>
+
+    <button id="btnAgregar" type="button">Agregar</button>
+
+    <hr>
+
+    <input type="text" id="filtroAutor" placeholder="Filtrar por autor">
+    <button id="filtrar" type="button">Filtrar</button>
+    <button id="mostrarDisponibles" type="button">Solo disponibles</button>
+    <button id="mostrarTodos" type="button">Ver todos</button>
+
+    <div id="errorForm"></div>
+
+    <ul id="listado"></ul>
+
+    <p id="stats"></p>
+
+    <script src="app.js"></script>
+</body>
+</html>
