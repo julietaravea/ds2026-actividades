@@ -1,0 +1,125 @@
+:root {
+  --principal: #754a58;
+  --principal-claro: #ebbdce;
+  --fondo: #f8edeb;
+  --texto: #000000;
+  --gris: #b56a88;
+  --borde: #f7c0da;
+  --shadow: 0 2px 12px rgba(0,0,0,.08);
+}
+
+body {
+  background-color: var(--fondo);
+  color: var(--texto);
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.navbar {
+  background-color: var(--principal) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,.15);
+}
+
+.navbar-brand {
+  font-size: 1.25rem;
+  font-weight: bold;
+  letter-spacing: .02em;
+}
+
+.nav-link:hover {
+  color: var(--principal-claro)
+}
+
+.hero {
+  background-color: var(--gris);
+    color: white;
+    padding: 60px 0;
+}
+
+
+.hero .lead {
+  opacity: .9;
+  margin-bottom: 28px;
+}
+
+.hero .btn-light {
+  color: var(--principal);
+  font-weight: 600;
+  border-radius: 6px;
+  padding: 10px 28px;
+}
+
+.card {
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  transition: transform .2s, box-shadow .2s;
+  background: white;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,.12);
+}
+
+.card-img-top {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.btn-primary {
+  background-color: var(--principal);
+  border-color: var(--principal);
+  border-radius: 6px;
+}
+
+.btn-primary:hover {
+  background-color: var(--principal-claro);
+  border-color: var(--principal-claro);
+}
+
+.btn-success {
+  background-color: var(--principal);
+  border-color: var(--principal);
+}
+
+.btn-secondary {
+  border-radius: 6px;
+}
+
+#busqueda {
+  border-radius: 6px;
+  border: 1px solid var(--borde);
+}
+
+.form-control,
+.form-select {
+  border-radius: 6px;
+  border: 1px solid var(--borde);
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--principal-claro);
+  box-shadow: 0 0 0 .2rem rgba(181,101,118,.25);
+}
+
+.img-fluid {
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+body > .container:last-of-type {
+  margin-bottom: 60px;
+}
