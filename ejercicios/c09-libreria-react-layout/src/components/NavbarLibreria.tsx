@@ -1,4 +1,5 @@
 import { Navbar, Container, Nav } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
 function NavbarLibreria() {
 
@@ -13,20 +14,15 @@ function NavbarLibreria() {
         </Navbar.Brand>
 
         <Nav>
+        <Nav.Link as={Link} to="/">
+         Inicio
+        </Nav.Link>
 
-          <Nav.Link>
-            Inicio
-          </Nav.Link>
+        <Nav.Link as={Link} to="/catalogo">
+         Catálogo
+        </Nav.Link>
 
-          <Nav.Link>
-            Libros
-          </Nav.Link>
-
-          <Nav.Link>
-            Contacto
-          </Nav.Link>
-
-        </Nav>
+      </Nav>
 
       </Container>
 

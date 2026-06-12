@@ -1,5 +1,6 @@
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
+import { Link } from 'react-router-dom'
 
 function Hero() {
     return (
@@ -9,7 +10,9 @@ function Hero() {
 
                 <h2 className="subtituloHero"> Los mejores clásicos de la literatura</h2>
 
-                <Button variant="outline-light"> Accedé a nuestro catálogo </Button>
+                <Button variant="outline-light" as={Link} to="/catalogo">
+                    Accedé a nuestro catálogo
+                </Button>
             </Container>
         </section>
     )
