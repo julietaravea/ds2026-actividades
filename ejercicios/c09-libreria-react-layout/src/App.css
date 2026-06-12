@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
 
 :root {
-    --color-principal: rgb(135, 103, 71);
+    --color-principal: rgb(58, 60, 82);
     --fuente: 'DM Serif Display', serif;
     --sombra-caja: 2px 2px 8px rgb(248, 248, 248);
 }
@@ -11,7 +11,7 @@ body {
 }
 
 .navbar-crema {
-    background-color: #d2af8d;
+    background-color: #3c3f55;
 }
 
 .navbar-crema .nav-link {
@@ -42,7 +42,7 @@ body {
 .hero {
     background-image:
     linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-    url("/imagenes/libreria.jpg");
+    url("/imagenes/libreria.avif");
     background-size: cover;
     background-position: center;
     height: 40vh;
@@ -50,10 +50,6 @@ body {
     justify-content: center;
     align-items: center;
     color: white;
-}
-
-.tituloHero {
-    font-size: 4rem;
 }
 
 .subtituloHero {
@@ -87,11 +83,10 @@ body {
 }
 
 .subtituloDestacados {
-    font-family: var(--fuente);
+    font-family: "Book Antiqua", serif;
     font-size: 3rem;
-    margin: 20px 0px;
+    font-weight: bold;
 }
-
 .card-title {
     min-height: 70px;
     display: flex;

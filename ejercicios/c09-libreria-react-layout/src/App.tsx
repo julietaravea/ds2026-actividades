@@ -1,14 +1,11 @@
-import NavbarLibreria from './components/NavbarLibreria'
-import Footer from './components/Footer'
+import Layout from './components/Layout/Layout'
 import Home from './pages/Home'
 
 function App() {
     return (
-        <>
-            <NavbarLibreria />
+        <Layout>
             <Home />
-            <Footer />
-        </>
+        </Layout>
     )
 }
 

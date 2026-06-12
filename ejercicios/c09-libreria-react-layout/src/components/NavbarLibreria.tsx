@@ -9,7 +9,7 @@ function NavbarLibreria() {
       <Container>
 
         <Navbar.Brand className="tituloNavbar" href="#home">
-          Librería
+          LIBRERÍA
         </Navbar.Brand>
 
         <Nav>
