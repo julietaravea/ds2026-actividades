@@ -1,0 +1,47 @@
+### Libros
+GET http://localhost:3000/api/libros
+
+### Autores
+GET http://localhost:3000/api/autores
+
+### Autor por id
+GET http://localhost:3000/api/autores/1
+
+### Autor inexistente
+GET http://localhost:3000/api/autores/999
+
+### Crear autor
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Iván Turguénev",
+  "nacionalidad": "Rusia"
+}
+
+### Modificar autor
+PUT http://localhost:3000/api/autores/1
+Content-Type: application/json
+
+{
+  "nombre": "Neil Richard Gaiman",
+  "nacionalidad": "Reino Unido"
+}
+
+### Modificar inexistente
+PUT http://localhost:3000/api/autores/999
+Content-Type: application/json
+
+{
+  "nombre": "X",
+  "nacionalidad": "Y"
+}
+
+### Eliminar autor
+DELETE http://localhost:3000/api/autores/2
+
+### Eliminar inexistente
+DELETE http://localhost:3000/api/autores/999
+
+### Verificar autores
+GET http://localhost:3000/api/autores
