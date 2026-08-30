@@ -1,0 +1,170 @@
+### Obtener todos los libros
+GET http://localhost:3000/api/libros
+
+
+### Obtener libro por ID
+GET http://localhost:3000/api/libros/1
+
+
+### Obtener libro inexistente
+GET http://localhost:3000/api/libros/999
+
+
+### Obtener libro con ID inválido
+GET http://localhost:3000/api/libros/abc
+
+
+### Obtener todos los autores
+GET http://localhost:3000/api/autores
+
+
+### Obtener autor por ID
+GET http://localhost:3000/api/autores/1
+
+
+### Obtener autor inexistente
+GET http://localhost:3000/api/autores/999
+
+
+### Obtener autor con ID inválido
+GET http://localhost:3000/api/autores/abc
+
+
+### Crear autor correctamente
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Jorge Luis Borges",
+  "nacionalidad": "Argentina"
+}
+
+
+### Crear autor duplicado → 409
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "Neil Gaiman",
+  "nacionalidad": "Británica"
+}
+
+
+### Crear autor inválido → 400
+POST http://localhost:3000/api/autores
+Content-Type: application/json
+
+{
+  "nombre": "",
+  "nacionalidad": ""
+}
+
+
+### Modificar autor correctamente
+PUT http://localhost:3000/api/autores/1
+Content-Type: application/json
+
+{
+  "nombre": "Neil Richard Gaiman",
+  "nacionalidad": "Reino Unido"
+}
+
+
+### Modificar autor inexistente → 404
+PUT http://localhost:3000/api/autores/999
+Content-Type: application/json
+
+{
+  "nombre": "Autor inexistente",
+  "nacionalidad": "Argentina"
+}
+
+
+### Modificar autor con ID inválido → 400
+PUT http://localhost:3000/api/autores/abc
+Content-Type: application/json
+
+{
+  "nombre": "Autor",
+  "nacionalidad": "Argentina"
+}
+
+
+### Eliminar autor
+DELETE http://localhost:3000/api/autores/2
+
+
+### Eliminar autor inexistente → 404
+DELETE http://localhost:3000/api/autores/999
+
+
+### Crear libro correctamente
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "El Aleph",
+  "precio": 16000,
+  "imagen": "/imagenes/aleph.jpg",
+  "descripcion": "Una colección de cuentos de Jorge Luis Borges.",
+  "disponible": true,
+  "autorId": 1
+}
+
+
+### Crear libro inválido → 400
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "",
+  "precio": -100,
+  "imagen": "",
+  "descripcion": "",
+  "autorId": 0
+}
+
+
+### Crear libro con autor inexistente → 400
+POST http://localhost:3000/api/libros
+Content-Type: application/json
+
+{
+  "titulo": "Libro de prueba",
+  "precio": 10000,
+  "imagen": "/imagenes/prueba.jpg",
+  "descripcion": "Descripción de prueba.",
+  "disponible": true,
+  "autorId": 999
+}
+
+
+### Modificar libro correctamente
+PUT http://localhost:3000/api/libros/1
+Content-Type: application/json
+
+{
+  "titulo": "Coraline",
+  "precio": 17000,
+  "imagen": "/imagenes/coraline.webp",
+  "descripcion": "Una niña descubre una puerta secreta hacia un mundo paralelo.",
+  "disponible": true,
+  "autorId": 1
+}
+
+
+### Modificar libro inexistente → 404
+PUT http://localhost:3000/api/libros/999
+Content-Type: application/json
+
+{
+  "titulo": "Libro inexistente",
+  "precio": 10000,
+  "imagen": "/imagenes/test.jpg",
+  "descripcion": "Libro de prueba.",
+  "autorId": 1
+}
+
+
+### Eliminar libro inexistente → 404
+DELETE http://localhost:3000/api/libros/999
