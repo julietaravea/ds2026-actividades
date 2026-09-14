@@ -1,0 +1,48 @@
+generator client {
+  provider        = "prisma-client-js"
+  output          = "../src/generated/prisma"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Rol {
+  ADMIN
+  CLIENTE
+}
+
+model Usuario {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  nombre       String
+  rol          Rol      @default(CLIENTE)
+  creadoEn     DateTime @default(now())
+}
+
+model Autor {
+  id           Int     @id @default(autoincrement())
+  nombre       String
+  nacionalidad String
+  libros       Libro[]
+}
+
+model Categoria {
+  id     Int     @id @default(autoincrement())
+  nombre String  @unique
+  libros Libro[]
+}
+
+model Libro {
+  id          Int         @id @default(autoincrement())
+  titulo      String
+  precio      Float
+  imagen      String?
+  descripcion String?
+  autorId     Int
+  autor       Autor       @relation(fields: [autorId], references: [id])
+  categorias  Categoria[]
+  creadoEn    DateTime    @default(now())
+}
