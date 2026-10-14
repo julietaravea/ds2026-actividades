@@ -1,0 +1,7 @@
+.env
+node_modules/
+dist/
+backup-*.sql
+backend/.agents/
+backend/.claude/
+backend/.windsurf/
