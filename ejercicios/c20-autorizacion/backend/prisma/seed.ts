@@ -17,32 +17,20 @@ async function main() {
   }
 
   // ---- AUTORES ----
-  const neilGaiman = await prisma.autor.upsert({
-    where: { id: 1 },
-    update: {},
-    create: { nombre: "Neil Gaiman", nacionalidad: "Británica" },
-  });
+  const obtenerAutor = async (nombre: string, nacionalidad: string) =>
+    (await prisma.autor.findFirst({ where: { nombre } })) ??
+    (await prisma.autor.create({ data: { nombre, nacionalidad } }));
 
-  const albertCamus = await prisma.autor.upsert({
-    where: { id: 2 },
-    update: {},
-    create: { nombre: "Albert Camus", nacionalidad: "Francesa" },
-  });
-
-  const franzKafka = await prisma.autor.upsert({
-    where: { id: 3 },
-    update: {},
-    create: { nombre: "Franz Kafka", nacionalidad: "Checa" },
-  });
-
-  const ivanTurguenev = await prisma.autor.upsert({
-    where: { id: 4 },
-    update: {},
-    create: { nombre: "Iván Turguénev", nacionalidad: "Rusa" },
-  });
+  const austen = await obtenerAutor("Jane Austen", "Británica");
+  const charlotteBronte = await obtenerAutor("Charlotte Brontë", "Británica");
+  const emilyBronte = await obtenerAutor("Emily Brontë", "Británica");
+  const gaskell = await obtenerAutor("Elizabeth Gaskell", "Británica");
+  const duMaurier = await obtenerAutor("Daphne du Maurier", "Británica");
+  const shelley = await obtenerAutor("Mary Shelley", "Británica");
+  const turguenev = await obtenerAutor("Iván Turguénev", "Rusa");
 
   // ---- CATEGORÍAS ----
-  const nombresCategorias = ["Fantasía", "Terror", "Novela", "Existencialismo", "Clásico"];
+  const nombresCategorias = ["Romance", "Gótico", "Clásico", "Novela"];
   const categorias: Record<string, { id: number }> = {};
   for (const nombre of nombresCategorias) {
     categorias[nombre] = await prisma.categoria.upsert({
@@ -55,36 +43,92 @@ async function main() {
   // ---- LIBROS ----
   const libros = [
     {
-      titulo: "Coraline",
+      titulo: "Orgullo y prejuicio",
+      precio: 16000,
+      imagen: "/imagenes/orgullo-y-prejuicio.svg",
+      descripcion: "Elizabeth Bennet y el reservado señor Darcy tendrán que dejar atrás sus prejuicios antes de reconocer lo que sienten.",
+      autorId: austen.id,
+      categoriaNombres: ["Romance", "Clásico"],
+    },
+    {
+      titulo: "Sensatez y sentimientos",
       precio: 15000,
-      imagen: "/imagenes/coraline.webp",
-      descripcion: "Una niña descubre una puerta secreta hacia un mundo paralelo tan fascinante como peligroso.",
-      autorId: neilGaiman.id,
-      categoriaNombres: ["Fantasía", "Terror"],
+      imagen: "/imagenes/sensatez-y-sentimientos.svg",
+      descripcion: "Dos hermanas, una prudente y otra apasionada, enfrentan el amor y la pérdida en la Inglaterra del siglo XIX.",
+      autorId: austen.id,
+      categoriaNombres: ["Romance", "Clásico"],
     },
     {
-      titulo: "El extranjero",
-      precio: 14000,
-      imagen: "/imagenes/extranjero.jpg",
-      descripcion: "Una novela existencialista que explora el absurdo de la vida a través de su protagonista, Meursault.",
-      autorId: albertCamus.id,
-      categoriaNombres: ["Novela", "Existencialismo"],
+      titulo: "Emma",
+      precio: 15500,
+      imagen: "/imagenes/emma.svg",
+      descripcion: "Una joven que se cree experta en casamientos arma parejas ajenas y termina descubriendo sus propios sentimientos.",
+      autorId: austen.id,
+      categoriaNombres: ["Romance", "Novela"],
     },
     {
-      titulo: "Metamorfosis",
-      precio: 12000,
-      imagen: "/imagenes/metamorfosis.webp",
-      descripcion: "Gregor Samsa despierta transformado en un insecto gigante, cambiando para siempre su vida y la de su familia.",
-      autorId: franzKafka.id,
-      categoriaNombres: ["Clásico", "Novela"],
+      titulo: "Persuasión",
+      precio: 14500,
+      imagen: "/imagenes/persuasion.svg",
+      descripcion: "Años después de haber rechazado a su pretendiente, Anne Elliot vuelve a cruzarse con él.",
+      autorId: austen.id,
+      categoriaNombres: ["Romance", "Clásico"],
     },
     {
-      titulo: "Primer Amor",
+      titulo: "La abadía de Northanger",
+      precio: 13500,
+      imagen: "/imagenes/la-abadia-de-northanger.svg",
+      descripcion: "Una lectora fanática de las novelas góticas imagina oscuros misterios en una antigua abadía.",
+      autorId: austen.id,
+      categoriaNombres: ["Gótico", "Romance"],
+    },
+    {
+      titulo: "Jane Eyre",
+      precio: 17500,
+      imagen: "/imagenes/jane-eyre.svg",
+      descripcion: "Una huérfana se convierte en institutriz y descubre un secreto escondido en la mansión de Thornfield.",
+      autorId: charlotteBronte.id,
+      categoriaNombres: ["Gótico", "Romance"],
+    },
+    {
+      titulo: "Cumbres borrascosas",
+      precio: 16500,
+      imagen: "/imagenes/cumbres-borrascosas.svg",
+      descripcion: "Una pasión destructiva entre Heathcliff y Catherine atraviesa los páramos de Yorkshire y dos generaciones.",
+      autorId: emilyBronte.id,
+      categoriaNombres: ["Gótico", "Clásico"],
+    },
+    {
+      titulo: "Norte y sur",
+      precio: 15000,
+      imagen: "/imagenes/norte-y-sur.svg",
+      descripcion: "Margaret, una joven del sur de Inglaterra, se enfrenta a una ciudad industrial y a un orgulloso dueño de fábrica.",
+      autorId: gaskell.id,
+      categoriaNombres: ["Romance", "Novela"],
+    },
+    {
+      titulo: "Rebeca",
+      precio: 16000,
+      imagen: "/imagenes/rebeca.svg",
+      descripcion: "La nueva señora de Manderley vive a la sombra de la primera esposa, cuyo recuerdo todavía domina la casa.",
+      autorId: duMaurier.id,
+      categoriaNombres: ["Gótico", "Novela"],
+    },
+    {
+      titulo: "Frankenstein",
+      precio: 13500,
+      imagen: "/imagenes/frankenstein.svg",
+      descripcion: "Un científico da vida a una criatura y debe enfrentar las consecuencias de haberla abandonado.",
+      autorId: shelley.id,
+      categoriaNombres: ["Gótico", "Clásico"],
+    },
+    {
+      titulo: "Primer amor",
       precio: 13000,
-      imagen: "/imagenes/ivan.webp",
+      imagen: "/imagenes/primer-amor.svg",
       descripcion: "Un relato clásico sobre las emociones, ilusiones y desilusiones del primer amor juvenil.",
-      autorId: ivanTurguenev.id,
-      categoriaNombres: ["Clásico", "Novela"],
+      autorId: turguenev.id,
+      categoriaNombres: ["Romance", "Clásico"],
     },
   ];
 

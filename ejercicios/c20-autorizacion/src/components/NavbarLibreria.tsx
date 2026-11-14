@@ -27,7 +27,7 @@ function NavbarLibreria() {
 
             {tieneRol('ADMIN') && (
               <Nav.Link as={Link} to="/libros/nuevo">
-                Nuevo Libro
+                Nuevo libro
               </Nav.Link>
             )}
           </Nav>
@@ -35,16 +35,14 @@ function NavbarLibreria() {
           <div className="d-flex align-items-center gap-2">
             {usuario ? (
               <>
-                <span className="text-white">
-                  {usuario.nombre} ({usuario.rol})
-                </span>
+                <span className="text-white">Hola, {usuario.nombre} ·</span>
 
                 <Button
                   variant="link"
-                  className="text-white text-decoration-none"
+                  className="text-white text-decoration-none p-0"
                   onClick={handleCerrarSesion}
                 >
-                  Cerrar sesión
+                  Salir
                 </Button>
               </>
             ) : (
@@ -54,7 +52,7 @@ function NavbarLibreria() {
                   className="text-white text-decoration-none"
                   onClick={() => navigate('/login')}
                 >
-                  Iniciar sesión
+                  Ingresar
                 </Button>
 
                 <Button

@@ -27,7 +27,8 @@ function LibroCard({
               variant="top"
               src={imagen}
                style={{
-             height: '300px',
+             height: 'auto',
+             aspectRatio: '2 / 3',
                 objectFit: 'cover'
           }}
             />

@@ -10,6 +10,13 @@ import LibroCard from '../components/LibroCard'
 import { apiFetch } from '../services/api'
 import type { Libro } from '../types/libro'
 
+const TITULOS_DESTACADOS = [
+    'Orgullo y prejuicio',
+    'Jane Eyre',
+    'Cumbres borrascosas',
+    'Rebeca',
+]
+
 function Home() {
     const [libros, setLibros] = useState<Libro[]>([])
     const [cargando, setCargando] = useState(true)
@@ -21,6 +28,8 @@ function Home() {
             .catch((e) => setError(e.message))
             .finally(() => setCargando(false))
     }, [])
+
+    const destacados = libros.filter((l) => TITULOS_DESTACADOS.includes(l.titulo))
 
     return (
         <>
@@ -40,7 +49,7 @@ function Home() {
 
                 <Row className="g-4 justify-content-center">
 
-                    {libros.slice(0, 4).map((libro) => (
+                    {destacados.map((libro) => (
                         <Col md={4} lg={3} key={libro.id}>
                             <LibroCard
                                 id={libro.id}

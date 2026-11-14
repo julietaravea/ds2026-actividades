@@ -6,7 +6,7 @@ function Hero() {
     return (
         <section className="hero">
             <Container className="text-center py-5">
-                <h1 className="tituloHero subtituloDestacados"> ¡Bienvenidos! </h1>
+                <h1 className="tituloHero subtituloDestacados"> Bienvenidos </h1>
 
                 <h2 className="subtituloHero"> Los mejores clásicos de la literatura</h2>
 

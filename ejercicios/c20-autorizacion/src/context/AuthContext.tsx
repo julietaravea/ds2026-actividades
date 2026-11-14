@@ -18,6 +18,7 @@ import { apiFetch } from '../services/api';
 interface AuthContextType {
   usuario: UsuarioSesion | null;
   cargando: boolean;
+  estaAutenticado: boolean;
   login: (email: string, password: string) => Promise<void>;
   logout: () => void;
   tieneRol: (rol: 'ADMIN' | 'CLIENTE') => boolean;
@@ -88,7 +89,16 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const tieneRol = (rol: 'ADMIN' | 'CLIENTE') => usuario?.rol === rol;
 
   return (
-    <AuthContext.Provider value={{ usuario, cargando, login, logout, tieneRol }}>
+    <AuthContext.Provider
+      value={{
+        usuario,
+        cargando,
+        estaAutenticado: usuario !== null,
+        login,
+        logout,
+        tieneRol,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

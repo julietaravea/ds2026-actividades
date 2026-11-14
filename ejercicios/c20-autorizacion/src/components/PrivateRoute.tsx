@@ -1,4 +1,5 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Spinner } from 'react-bootstrap';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
 interface PrivateRouteProps {
@@ -7,13 +8,14 @@ interface PrivateRouteProps {
 
 export default function PrivateRoute({ rol }: PrivateRouteProps) {
   const { usuario, cargando } = useAuth();
+  const location = useLocation();
 
   if (cargando) {
-    return <p className="text-center mt-5">Verificando sesión...</p>;
+    return <Spinner animation="border" className="d-block mx-auto mt-5" />;
   }
 
   if (!usuario) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/login" replace state={{ from: location }} />;
   }
 
   if (rol && usuario.rol !== rol) {
