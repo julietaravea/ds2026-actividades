@@ -1,3 +1,4 @@
+
 import Card from 'react-bootstrap/Card'
 import Button from 'react-bootstrap/Button'
 import { useState } from 'react'
@@ -9,6 +10,8 @@ type LibroCardProps = {
     autor: string
     imagen: string
     mostrarLike?: boolean
+    esAdmin?: boolean
+    onEliminar?: (id: number) => void
 }
 
 function LibroCard({
@@ -16,7 +19,9 @@ function LibroCard({
     titulo,
     autor,
     imagen,
-    mostrarLike = true
+    mostrarLike = true,
+    esAdmin = false,
+    onEliminar
 }: LibroCardProps) {
 
     const [like, setLike] = useState(false)
@@ -24,25 +29,18 @@ function LibroCard({
     return (
         <Card className="text-center h-100 shadow-sm">
             <Card.Img
-              variant="top"
-              src={imagen}
-               style={{
-             height: 'auto',
-             aspectRatio: '2 / 3',
-                objectFit: 'cover'
-          }}
+                variant="top"
+                src={imagen}
+                style={{
+                    height: 'auto',
+                    aspectRatio: '2 / 3',
+                    objectFit: 'cover'
+                }}
             />
 
             <Card.Body>
-
-                <Card.Title>
-                    {titulo}
-                </Card.Title>
-
-                <Card.Text>
-                    {autor}
-                </Card.Text>
-
+                <Card.Title>{titulo}</Card.Title>
+                <Card.Text>{autor}</Card.Text>
             </Card.Body>
 
             <div className="d-flex flex-column gap-2 align-items-center mb-3">
@@ -64,8 +62,26 @@ function LibroCard({
                     </Button>
                 )}
 
-            </div>
+                {esAdmin && (
+                    <>
+                        <Button
+                            variant="outline-primary"
+                            as={Link as any}
+                            to={`/libros/${id}/editar`}
+                        >
+                            Modificar
+                        </Button>
 
+                        <Button
+                            variant="outline-danger"
+                            onClick={() => onEliminar?.(id)}
+                        >
+                            Borrar
+                        </Button>
+                    </>
+                )}
+
+            </div>
         </Card>
     )
 }

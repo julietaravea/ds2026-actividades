@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -6,11 +7,13 @@ import { Spinner, Alert } from 'react-bootstrap';
 import LibroCard from '../components/LibroCard';
 import { apiFetch } from '../services/api';
 import type { Libro } from '../types/libro';
+import { useAuth } from '../context/AuthContext';
 
 function Catalogo() {
   const [libros, setLibros] = useState<Libro[]>([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState('');
+  const { tieneRol } = useAuth();
 
   useEffect(() => {
     apiFetch<Libro[]>('/libros')
@@ -18,6 +21,24 @@ function Catalogo() {
       .catch((e) => setError(e.message))
       .finally(() => setCargando(false));
   }, []);
+
+  const eliminarLibro = async (id: number) => {
+    if (!window.confirm('¿Estás seguro de que querés eliminar este libro?')) {
+      return;
+    }
+
+    try {
+      await apiFetch(`/libros/${id}`, {
+        method: 'DELETE',
+      });
+
+      setLibros((librosActuales) =>
+        librosActuales.filter((libro) => libro.id !== id)
+      );
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'No se pudo eliminar el libro');
+    }
+  };
 
   return (
     <Container className="my-5">
@@ -29,7 +50,12 @@ function Catalogo() {
         Descubrí nuestra selección de libros clásicos y contemporáneos.
       </p>
 
-      {cargando && <div className="text-center"><Spinner animation="border" /></div>}
+      {cargando && (
+        <div className="text-center">
+          <Spinner animation="border" />
+        </div>
+      )}
+
       {error && <Alert variant="danger">{error}</Alert>}
 
       <Row className="g-5 mb-5">
@@ -41,6 +67,8 @@ function Catalogo() {
               autor={libro.autor.nombre}
               imagen={libro.imagen ?? ''}
               mostrarLike={false}
+              esAdmin={tieneRol('ADMIN')}
+              onEliminar={eliminarLibro}
             />
           </Col>
         ))}

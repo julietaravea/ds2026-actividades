@@ -1,3 +1,4 @@
+
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import PrivateRoute from './components/PrivateRoute';
@@ -5,6 +6,7 @@ import Home from './pages/Home';
 import Catalogo from './pages/Catalogo';
 import LibroDetalle from './pages/LibroDetalle';
 import LibroNuevo from './pages/LibroNuevo';
+import LibroEditar from './pages/LibroEditar';
 import Registro from './pages/Registro';
 import Login from './pages/Login';
 import SinPermiso from './pages/SinPermiso';
@@ -22,6 +24,7 @@ function App() {
 
         <Route element={<PrivateRoute rol="ADMIN" />}>
           <Route path="/libros/nuevo" element={<LibroNuevo />} />
+          <Route path="/libros/:id/editar" element={<LibroEditar />} />
         </Route>
       </Routes>
     </Layout>
