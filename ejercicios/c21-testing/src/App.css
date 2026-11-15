@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap');
+
+:root {
+    --color-principal: #5c1f2e;      /* burdeos */
+    --color-oscuro: #2a0f17;
+    --color-dorado: #c8a560;
+    --color-crema: #f3e9d2;
+    --fuente: 'DM Serif Display', serif;
+    --sombra-caja: 0 4px 14px rgba(60, 20, 30, 0.15);
+}
+
+body {
+    background-color: #faf6ee;
+}
+
+/* ---------- Navbar ---------- */
+.navbar-crema {
+    background-color: var(--color-principal);
+    border-bottom: 3px solid var(--color-dorado);
+    padding-top: 0.7rem;
+    padding-bottom: 0.7rem;
+}
+
+.navbar-crema .nav-link {
+    color: var(--color-crema) !important;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    transition: color 0.2s;
+}
+
+.navbar-crema .nav-link:hover {
+    color: var(--color-dorado) !important;
+}
+
+.navbar-crema .navbar-brand {
+    color: var(--color-crema) !important;
+    font-family: var(--fuente);
+    font-weight: 400;
+    font-size: 1.6rem;
+    letter-spacing: 0.12em;
+}
+
+.navbar-crema .navbar-toggler {
+    border-color: rgba(243, 233, 210, 0.5);
+}
+
+.navbar-crema .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+.navbar-crema .btn-link,
+.navbar-crema .text-white {
+    color: var(--color-crema) !important;
+}
+
+.navbar-crema .btn-link:hover {
+    color: var(--color-dorado) !important;
+}
+
+.custom-navbar {
+    background-color: var(--color-principal) !important;
+}
+
+.custom-navbar .navbar-brand {
+    color: white !important;
+}
+
+.custom-navbar .nav-link {
+    color: white !important;
+}
+
+.custom-navbar .nav-link:hover {
+    color: rgb(230, 230, 230) !important;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+    background-image:
+          linear-gradient(rgba(118, 30, 47, 0.72), rgba(20, 8, 14, 0.82)),
+        url("/imagenes/libreria.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 380px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-crema);
+}
+
+.hero .tituloHero {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.subtituloHero {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+}
+
+.hero .btn-outline-light {
+    border-color: var(--color-dorado);
+    color: var(--color-dorado);
+    border-radius: 30px;
+    padding: 0.5rem 1.6rem;
+    transition: 0.3s;
+}
+
+.hero .btn-outline-light:hover {
+    background-color: var(--color-dorado);
+    color: var(--color-oscuro);
+}
+
+/* ---------- Títulos ---------- */
+.subtituloDestacados {
+    font-family: var(--fuente);
+    font-size: 3rem;
+    font-weight: 400;
+}
+
+h2.subtituloDestacados::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 3px;
+    background-color: var(--color-dorado);
+    margin: 14px auto 0;
+}
+
+/* ---------- Botones ---------- */
+.btn-primary {
+    background-color: var(--color-principal) !important;
+    border: none !important;
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+    background-color: #7a2a3e !important;
+}
+
+.card .btn-dark {
+    background-color: var(--color-principal);
+    border-color: var(--color-principal);
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.card .btn-dark:hover {
+    background-color: #7a2a3e;
+    border-color: #7a2a3e;
+}
+
+.card .btn-outline-danger {
+    color: var(--color-principal);
+    border-color: var(--color-principal);
+    border-radius: 30px;
+}
+
+.card .btn-outline-danger:hover {
+    background-color: var(--color-principal);
+    border-color: var(--color-principal);
+    color: var(--color-crema);
+}
+
+/* ---------- Cards ---------- */
+.card {
+    border: 1px solid rgba(200, 165, 96, 0.45);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--sombra-caja);
+    background-color: #fffdf8;
+    height: 100%;
+    max-width: 250px;
+    margin: auto;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(60, 20, 30, 0.22);
+}
+
+.card-img-top {
+    aspect-ratio: 2 / 3;
+    height: auto;
+    object-fit: cover;
+}
+
+.card-title {
+    font-family: var(--fuente);
+    font-size: 1.2rem;
+    color: var(--color-principal);
+    min-height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-text {
+    color: #6b5a5f;
+    min-height: 40px;
+}
+
+.card button {
+    width: 150px;
+}
